@@ -1,0 +1,71 @@
+/* Style sheet configuration for V3 Framework Layout */
+body {
+  overflow-x: hidden;
+}
+
+/* Scroll Progress Tracker */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to right, #0ea5e9, #22d3ee);
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* Micro-interaction Hover Cards Glow Effect */
+.glow-card {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glow-card:hover {
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.2);
+  border-color: #0ea5e9;
+  transform: translateY(-6px);
+}
+
+/* Pure Circle Custom Cursor Layer */
+.custom-cursor {
+  width: 8px;
+  height: 8px;
+  background: #0ea5e9;
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.custom-cursor-follower {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(14, 165, 233, 0.4);
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out;
+}
+
+/* Floating Animation Utility */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Glassmorphism Configuration blur background style */
+.glass-nav {
+  backdrop-filter: blur(12px);
+  background-color: rgba(11, 19, 41, 0.85);
+}
+
+/* Single Page Section Active Tracking Class styling color */
+.nav-active {
+  color: #0ea5e9 !important;
+  font-weight: 700;
+}
