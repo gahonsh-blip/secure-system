@@ -1,60 +1,508 @@
 <!DOCTYPE html>
-<html lang="hi" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure System Solution - Home</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
-        body { font-family: 'Segoe UI', sans-serif; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Secure System Solution | IT Infrastructure & CCTV Security Ranchi</title>
+  <meta name="description" content="Secure System Solution is Argora, Ranchi's trusted choice for professional IT services, advanced CCTV camera installation, biometric access control, and corporate AMC solutions.">
+  <meta name="keywords" content="CCTV Installation Ranchi, Laptop Repair Argora, Networking Solutions Ranchi, Corporate AMC, Secure System Solution">
+  <meta name="author" content="Gahonsh Freelancing">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Secure System Solution | IT Infrastructure & Security">
+  <meta property="og:description" content="Professional IT hardware support, high-definition CCTV setups, and network infrastructure management in Ranchi, Jharkhand.">
+  <meta property="og:image" content="https://securesystemsolution.in/assets/og-cover.jpg">
+
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Local Business Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Secure System Solution",
+    "image": "https://securesystemsolution.in/assets/logo.png",
+    "description": "Trusted partner for advanced IT infrastructure, computer diagnostics, network solutions, and CCTV camera installations in Ranchi.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Argora Area",
+      "addressLocality": "Ranchi",
+      "addressRegion": "JH",
+      "postalCode": "834002",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "23.3394",
+      "longitude": "85.3006"
+    },
+    "url": "https://securesystemsolution.in",
+    "telephone": "+91XXXXXXXXXX",
+    "priceRange": "₹₹"
+  }
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body class="bg-[#0b1329] text-slate-100 overflow-x-hidden">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-shield-halved text-2xl text-[#1F4E79]"></i>
-                    <span class="text-xl font-bold text-[#1F4E79] tracking-tight">Secure System Solution</span>
-                </div>
-                <div class="hidden md:flex space-x-8 font-medium">
-                    <a href="index.html" class="text-[#1F4E79] font-bold border-b-2 border-[#1F4E79] pb-1">होम</a>
-                    <a href="about.html" class="text-slate-600 hover:text-[#1F4E79] transition">हमारे बारे में</a>
-                    <a href="services.html" class="text-slate-600 hover:text-[#1F4E79] transition">सेवाएं</a>
-                    <a href="contact.html" class="text-slate-600 hover:text-[#1F4E79] transition">संपर्क करें</a>
-                </div>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="progress-bar"></div>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="fixed inset-0 bg-slate-950 z-[99999] flex items-center justify-center transition-opacity duration-500">
+    <div class="w-16 h-16 border-4 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Custom Cursor (Desktop Only) -->
+  <div class="custom-cursor hidden md:block" id="cursor"></div>
+  <div class="custom-cursor-follower hidden md:block" id="follower"></div>
+
+  <!-- 1. Header & Glassmorphism Navigation -->
+  <nav class="glass-nav text-white sticky top-0 z-50 border-b border-slate-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#home" class="text-2xl font-bold tracking-wide text-sky-400">
+        Secure System <span class="text-white">Solution</span>
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex space-x-7 items-center font-medium text-sm tracking-wide" id="nav-links">
+        <a href="#home" class="nav-item hover:text-sky-400 py-1 transition-colors nav-active">Home</a>
+        <a href="#about" class="nav-item hover:text-sky-400 py-1 transition-colors">About</a>
+        
+        <!-- Mega Dropdown Menu -->
+        <div class="relative group py-2">
+          <button class="flex items-center hover:text-sky-400 transition-colors focus:outline-none cursor-pointer">
+            Services <i class="fas fa-chevron-down ml-1.5 text-xs group-hover:rotate-180 transition-transform duration-300"></i>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 mt-3 w-[600px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-sky-400 text-xs font-bold uppercase tracking-wider mb-3">Security Infrastructure</h4>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-video text-sky-500 mr-2"></i> CCTV Surveillance Systems</a>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-fingerprint text-sky-500 mr-2"></i> Biometric Access Control</a>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-network-wired text-sky-500 mr-2"></i> Networking & LAN Setup</a>
             </div>
-        </div>
-    </nav>
-
-    <!-- FULL HOME HERO SECTION -->
-    <section class="relative bg-gradient-to-br from-slate-900 to-[#1F4E79] text-white py-24 md:py-36 overflow-hidden flex-grow flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="max-w-3xl">
-                <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">Trusted Choice in Ranchi</span>
-                <h1 class="text-4xl md:text-6xl font-bold mt-4 mb-6 leading-tight">
-                    "Empowering Businesses Through Comprehensive IT Solutions"
-                </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
-                    Welcome to Secure System Solution - Protecting & Connecting Ranchi. हम आपके टेक्नोलॉजी को बिना किसी रुकावट के चलाने और आपकी संपत्ति को पूरी तरह सुरक्षित रखने में विशेषज्ञ हैं। लैपटॉप रिपेयर से लेकर सीसीटीवी कैमरा इंस्टॉलेशन तक, हमारे एक्सपर्ट्स हमेशा तैयार हैं।
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="services.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold shadow-lg shadow-blue-600/30 transition">हमारी सेवाएं देखें</a>
-                    <a href="contact.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-semibold backdrop-blur transition">मुफ्त परामर्श लें</a>
-                </div>
+            <div>
+              <h4 class="text-sky-400 text-xs font-bold uppercase tracking-wider mb-3">Enterprise IT Support</h4>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-file-contract text-sky-500 mr-2"></i> Corporate AMC Services</a>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-server text-sky-500 mr-2"></i> Server Setup & Cloud Backup</a>
+              <a href="#services" class="block p-2 hover:bg-slate-800 rounded-lg text-sm transition-colors"><i class="fas fa-shield-alt text-sky-500 mr-2"></i> Cybersecurity & Firewalls</a>
             </div>
+          </div>
         </div>
-    </section>
+        
+        <a href="#projects" class="nav-item hover:text-sky-400 py-1 transition-colors">Projects</a>
+        <a href="#testimonials" class="nav-item hover:text-sky-400 py-1 transition-colors">Testimonials</a>
+        <a href="#faq" class="nav-item hover:text-sky-400 py-1 transition-colors">FAQ</a>
+        <a href="#contact" class="nav-item hover:text-sky-400 py-1 transition-colors">Contact</a>
+      </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm mt-auto">
-        <p>&copy; 2026 Secure System Solution. All Rights Reserved.</p>
-        <p class="text-xs text-slate-600 mt-1">Designed with ❤️ by Gahonsh Freelancing</p>
-    </footer>
+      <div class="flex items-center space-x-4">
+        <a href="#contact" class="hidden sm:inline-block bg-sky-500 hover:scale-105 hover:bg-sky-600 text-white text-sm px-6 py-2.5 rounded-xl font-semibold transition-all shadow-lg shadow-sky-500/20">Get Quote</a>
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl focus:outline-none cursor-pointer">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
 
+    <!-- Mobile Slide-out Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-t border-slate-800 px-6 py-4 space-y-4">
+      <a href="#home" class="block hover:text-sky-400 text-sm">Home</a>
+      <a href="#about" class="block hover:text-sky-400 text-sm">About</a>
+      <a href="#services" class="block hover:text-sky-400 text-sm">Services</a>
+      <a href="#projects" class="block hover:text-sky-400 text-sm">Projects</a>
+      <a href="#contact" class="block hover:text-sky-400 text-sm">Contact</a>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section -->
+  <section id="home" class="min-h-[85vh] flex items-center px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 py-12">
+    <div data-aos="fade-right">
+      <span class="text-sky-400 font-bold tracking-widest text-xs uppercase bg-sky-950/60 px-4 py-2 rounded-full border border-sky-900/50">Next-Gen Technology Partner</span>
+      <h1 class="text-4xl md:text-6xl font-extrabold mt-6 mb-6 leading-tight">
+        Secure Your Business With Advanced <br>
+        <span class="text-sky-400" id="typed-text"></span>
+      </h1>
+      <p class="text-slate-400 text-base max-w-lg mb-8">
+        Ranchi's trusted choice for professional IT services and advanced security infrastructure. We engineer robust systems tailored for offices, schools, and industrial hubs.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contact" class="bg-gradient-to-r from-sky-500 to-cyan-500 hover:shadow-xl hover:shadow-sky-500/20 px-8 py-4 rounded-xl font-bold transition-all transform hover:-translate-y-1">Get Free Consultation</a>
+        <a href="#services" class="border border-slate-700 hover:border-sky-500 px-8 py-4 rounded-xl font-bold transition-all">Explore Services</a>
+      </div>
+    </div>
+    <div class="flex justify-center items-center" data-aos="fade-left">
+      <div class="w-full max-w-[450px] aspect-square bg-slate-900/60 border border-slate-800 rounded-3xl flex items-center justify-center relative animate-float shadow-2xl">
+        <div class="absolute -top-6 -left-6 bg-sky-500/10 p-4 rounded-2xl border border-sky-500/30 text-sky-400 text-3xl"><i class="fas fa-shield-halved"></i></div>
+        <div class="absolute -bottom-6 -right-6 bg-cyan-500/10 p-4 rounded-2xl border border-cyan-500/30 text-cyan-400 text-3xl"><i class="fas fa-server"></i></div>
+        <i class="fas fa-laptop-code text-[120px] text-slate-700"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Stats Counter Section -->
+  <section class="bg-slate-900/50 border-y border-slate-800 py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <div data-aos="zoom-in">
+        <div class="text-4xl md:text-5xl font-extrabold text-white mb-2 font-mono"><span class="counter" data-target="500">0</span>+</div>
+        <p class="text-slate-400 text-sm font-medium tracking-wide">Projects Completed</p>
+      </div>
+      <div data-aos="zoom-in" data-aos-delay="100">
+        <div class="text-4xl md:text-5xl font-extrabold text-sky-400 mb-2 font-mono"><span class="counter" data-target="250">0</span>+</div>
+        <p class="text-slate-400 text-sm font-medium tracking-wide">Happy Clients</p>
+      </div>
+      <div data-aos="zoom-in" data-aos-delay="200">
+        <div class="text-4xl md:text-5xl font-extrabold text-white mb-2 font-mono"><span class="counter" data-target="15">0</span>+</div>
+        <p class="text-slate-400 text-sm font-medium tracking-wide">Expert Engineers</p>
+      </div>
+      <div data-aos="zoom-in" data-aos-delay="300">
+        <div class="text-4xl md:text-5xl font-extrabold text-cyan-400 mb-2 font-mono">24/7</div>
+        <p class="text-slate-400 text-sm font-medium tracking-wide">Support Available</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. About Company -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="relative" data-aos="fade-right">
+      <div class="absolute inset-0 bg-gradient-to-r from-sky-500 to-cyan-500 rounded-3xl rotate-3 opacity-10"></div>
+      <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-xl relative z-10">
+        <h3 class="text-2xl font-bold mb-4 text-white">Who We Are</h3>
+        <p class="text-slate-400 leading-relaxed mb-6 text-sm">
+          Based in the Argora area of Ranchi, Jharkhand, we specialize in delivering high-quality, reliable technological solutions tailored to keep your business or home connected, efficient, and thoroughly protected.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex items-center space-x-3">
+            <i class="fas fa-check-circle text-sky-500"></i> <span class="text-sm font-semibold">Certified Team</span>
+          </div>
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex items-center space-x-3">
+            <i class="fas fa-bolt text-sky-500"></i> <span class="text-sm font-semibold">Fast Response</span>
+          </div>
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex items-center space-x-3">
+            <i class="fas fa-tags text-sky-500"></i> <span class="text-sm font-semibold">Affordable Cost</span>
+          </div>
+          <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex items-center space-x-3">
+            <i class="fas fa-microchip text-sky-500"></i> <span class="text-sm font-semibold">Modern Tech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-aos="fade-left">
+      <span class="text-sky-500 font-bold uppercase tracking-wider text-xs">Corporate Overview</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-6">Bridging The Gap Between Complex Technology & Operational Needs</h2>
+      <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+        From optimizing local business networks to deploying enterprise-grade surveillance systems, we pride ourselves on exceptional technical expertise, local market understanding, and a customer-first approach.
+      </p>
+      <a href="#contact" class="text-sky-400 font-bold text-sm inline-flex items-center group">Learn Our System History <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i></a>
+    </div>
+  </section>
+
+  <!-- 5. Services Section (8 Premium Cards) -->
+  <section id="services" class="py-24 bg-slate-950 px-6 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-sky-500 font-bold uppercase tracking-wider text-xs">What We Offer</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Enterprise Technology Support Services</h2>
+        <div class="w-12 h-1 bg-sky-500 mx-auto mt-4 rounded-full"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-desktop"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">IT Hardware Support</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Complete desktop setup, hardware health diagnostics, troubleshooting, and customized local workstation installation layouts.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="50">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-laptop"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">Laptop Repair</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Fixing panel issues, internal cooling optimization, OS configuration updates, and multi-brand component replacements.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-video"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">CCTV Installation</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Premium high-definition IP cameras, matrix channel routing, storage provisioning, and secure remote mobile monitoring apps.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-fingerprint"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">Biometric Attendance</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Automated secure logging frameworks, integration of employee access control panels, and cloud data synchronization systems.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-network-wired"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">Network Solutions</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Robust local area networking (LAN), secure enterprise router configurations, printer sharing setups, and reliable workflow engineering.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-shield-virus"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">Cyber Security & AMC</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Annual Maintenance Contracts (AMC) to shield systems from sudden failure, combined with advanced anti-malware deployments.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-database"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">Data Recovery Vault</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Restoring deep storage architectures, recover files from corrupted partitions, and local data drive management.</p>
+        </div>
+        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 transition-all duration-300 glow-card" data-aos="fade-up" data-aos-delay="350">
+          <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-phone-volume"></i></div>
+          <h3 class="text-lg font-bold text-white mb-2">EPABX & IPBX Systems</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">Internal telecommunication grid management, multi-line intercom solutions, and local office voice network routing setups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Why Choose Us -->
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-sky-500 font-bold uppercase tracking-wider text-xs">Our Advantages</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Why Corporate Enterprises Choose Us</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800" data-aos="fade-up">
+        <h4 class="text-white font-bold text-lg mb-2">🛠️ Experienced Engineers</h4>
+        <p class="text-slate-400 text-sm">Our tech specialists constantly refine skills to deploy and troubleshoot modern enterprise configurations.</p>
+      </div>
+      <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="100">
+        <h4 class="text-white font-bold text-lg mb-2">⚡ Quick Emergency Support</h4>
+        <p class="text-slate-400 text-sm">Minimizing business operational downtime with rapid on-site structural support and immediate diagnostics.</p>
+      </div>
+      <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="200">
+        <h4 class="text-white font-bold text-lg mb-2">💎 Top-Tier Brand Alliances</h4>
+        <p class="text-slate-400 text-sm">We strictly source high-performance equipment and trusted hardware components to ensure maximum hardware uptime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Project Portfolio Gallery -->
+  <section id="projects" class="py-24 bg-slate-950 px-6 border-y border-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+        <div>
+          <span class="text-sky-500 font-bold uppercase tracking-wider text-xs">Our Work Portfolio</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Enterprise Deployments Across Ranchi</h2>
+        </div>
+      </div>
+      
+      <!-- Portfolio Grid with Structured Unsplash Visual Placeholders -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-800 aspect-video" data-aos="zoom-in">
+          <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80" alt="CCTV Server Installation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90 z-10"></div>
+          <div class="absolute bottom-4 left-4 z-20">
+            <span class="text-sky-400 text-xs font-mono font-bold tracking-wider">SECURITY GRID</span>
+            <h4 class="text-white font-bold text-base mt-1">Multi-Zone Commercial CCTV Network</h4>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-800 aspect-video" data-aos="zoom-in" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Server Datacenter LAN" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90 z-10"></div>
+          <div class="absolute bottom-4 left-4 z-20">
+            <span class="text-sky-400 text-xs font-mono font-bold tracking-wider">NETWORKING SOLUTIONS</span>
+            <h4 class="text-white font-bold text-base mt-1">Structured Cat6 Fiber routing & WAN Configuration</h4>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-800 aspect-video" data-aos="zoom-in" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80" alt="Biometric Access Hardware" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90 z-10"></div>
+          <div class="absolute bottom-4 left-4 z-20">
+            <span class="text-sky-400 text-xs font-mono font-bold tracking-wider">CORPORATE AMC</span>
+            <h4 class="text-white font-bold text-base mt-1">Enterprise Biometric Access Audit Setup</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Execution Strategy Timeline -->
+  <section class="py-24 px-6 max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-sky-500 font-bold uppercase tracking-wider text-xs">Work Strategy</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-2">Our Execution Timeline</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 text-center">
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800" data-aos="fade-up">
+        <div class="text-sky-400 font-bold font-mono text-xl mb-2">01</div>
+        <h4 class="text-white font-bold text-sm mb-1">Analysis</h4>
+        <p class="text-slate-400 text-xs">Infrastructure Assessment</p>
+      </div>
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-sky-400 font-bold font-mono text-xl mb-2">02</div>
+        <h4 class="text-white font-bold text-sm mb-1">Inspection</h4>
+        <p class="text-slate-400 text-xs">On-Site Area Evaluation</p>
+      </div>
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-sky-400 font-bold font-mono text-xl mb-2">03</div>
+        <h4 class="text-white font-bold text-sm mb-1">Installation</h4>
+        <p class="text-slate-400 text-xs">Precision System Deployment</p>
+      </div>
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="300">
+        <div class="text-sky-400 font-bold font-mono text-xl mb-2">04</div>
+        <h4 class="text-white font-bold text-sm mb-1">Testing</h4>
+        <p class="text-slate-400 text-xs">Quality Architecture Audit</p>
+      </div>
+      <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-sky-400 font-bold font-mono text-xl mb-2">05</div>
+        <h4 class="text-white font-bold text-sm mb-1">AMC Support</h4>
+        <p class="text-slate-400 text-xs">Continuous Preventative Care</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Client Testimonials (3 Cards Slider) -->
+  <section id="testimonials" class="py-24 bg-slate-950 px-6 border-t border-slate-900">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-sky-400 font-bold text-xs uppercase tracking-wider">Testimonials</span>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Trusted By Ranchi Leaders</h2>
+      </div>
+      
+      <div class="swiper testimonial-swiper pb-12">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide bg-slate-900 p-8 rounded-2xl border border-slate-800 text-center">
+            <div class="text-amber-400 text-sm mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-4">"Excellent service. Professional team handled our corporate workspace CCTV surveillance configuration flawlessly without any system friction."</p>
+            <h5 class="text-white font-bold text-xs uppercase tracking-wider">- Commercial Project Partner, Argora</h5>
+          </div>
+          <div class="swiper-slide bg-slate-900 p-8 rounded-2xl border border-slate-800 text-center">
+            <div class="text-amber-400 text-sm mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-4">"Their laptop diagnostic support and corporate server management contracts are highly professional. Downtime has fallen to near zero."</p>
+            <h5 class="text-white font-bold text-xs uppercase tracking-wider">- Operations Director, Lalpur</h5>
+          </div>
+          <div class="swiper-slide bg-slate-900 p-8 rounded-2xl border border-slate-800 text-center">
+            <div class="text-amber-400 text-sm mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-4">"Structured LAN routing layout deployed at our school complex was precise and exceptionally clean. Excellent engineering execution."</p>
+            <h5 class="text-white font-bold text-xs uppercase tracking-wider">- Tech Infrastructure Head, Kanke</h5>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ Accordion Section -->
+  <section id="faq" class="py-24 px-6 max-w-3xl mx-auto">
+    <h2 class="text-3xl font-extrabold text-center text-white mb-12">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+        <button class="w-full text-left p-5 font-bold text-sm text-white flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFaq(this)">
+          How fast can you provide support?
+          <i class="fas fa-plus text-xs text-sky-400"></i>
+        </button>
+        <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5 bg-slate-900/50"><p class="text-slate-400 text-xs pb-5">We provide immediate local on-site diagnostic responses across Ranchi to ensure minimal organizational network downtime.</p></div>
+      </div>
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+        <button class="w-full text-left p-5 font-bold text-sm text-white flex justify-between items-center focus:outline-none cursor-pointer" onclick="toggleFaq(this)">
+          Do you offer Corporate AMC packages?
+          <i class="fas fa-plus text-xs text-sky-400"></i>
+        </button>
+        <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-5 bg-slate-900/50"><p class="text-slate-400 text-xs pb-5">Yes, we provide structured, long-term Annual Maintenance Contracts covering IT hardware, servers, and multi-channel CCTV grids.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. Contact Form (Direct Email Integration Trigger Setup) -->
+  <section id="contact" class="py-24 bg-slate-950 px-6 border-t border-slate-900 max-w-7xl mx-auto rounded-3xl mb-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div data-aos="fade-right">
+      <h3 class="text-2xl font-extrabold text-white mb-6">Request An Enterprise Quote</h3>
+      <form class="space-y-6" id="contactForm">
+        <div class="relative">
+          <input type="text" id="form-name" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-sm text-white placeholder-transparent focus:outline-none focus:border-sky-500 peer">
+          <label for="form-name" class="absolute left-4 top-4 text-slate-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1 peer-focus:text-xs peer-focus:text-sky-400 peer-[:not(:placeholder-shown)]:top-1 peer-[:not(:placeholder-shown)]:text-xs">Full Name</label>
+        </div>
+        <div class="relative">
+          <select id="form-service" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-sm text-slate-400 focus:outline-none focus:border-sky-500 cursor-pointer">
+            <option value="" disabled selected>Select Service Architecture Required</option>
+            <option value="CCTV Installation">CCTV Surveillance Deploy</option>
+            <option value="Networking Solutions">Enterprise LAN/WiFi Solutions</option>
+            <option value="AMC Services">Annual Maintenance Contract</option>
+            <option value="Laptop Repair">Laptop & Server Diagnostics</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold p-4 rounded-xl transition-all shadow-lg shadow-sky-500/20 cursor-pointer">Submit Architecture Request</button>
+      </form>
+    </div>
+    <div class="h-full min-h-[300px] bg-slate-900 rounded-2xl overflow-hidden border border-slate-800" data-aos="fade-left">
+      <!-- Fixed Actual Map Embed Configuration to Center Argora Block Area -->
+      <iframe class="w-full h-full grayscale opacity-70" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m4!1m2!1s0x39f4e13cd7f185ef:0x5e08c6cb09731454!2sArgora!8m2!3d23.3394!4d85.3006" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- 12. CTA Banner -->
+  <section class="max-w-7xl mx-auto my-16 px-6" data-aos="zoom-in">
+    <div class="bg-gradient-to-r from-sky-900 to-slate-900 border border-sky-800/40 p-12 rounded-3xl text-center relative overflow-hidden">
+      <div class="relative z-10">
+        <h2 class="text-3xl font-extrabold text-white mb-4">Ready To Secure Your Commercial Premises?</h2>
+        <p class="text-slate-300 text-sm max-w-xl mx-auto mb-8">Get enterprise-grade technical infrastructure audits customized specifically around your company workflow maps today.</p>
+        <a href="#contact" class="bg-white text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform inline-block text-sm">Consult System Engineer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. Professional 4 Column Footer (Clean Fix) -->
+  <footer class="bg-slate-950 text-slate-500 pt-16 pb-8 border-t border-slate-900 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 text-xs">
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Secure System Solution</h4>
+        <p class="leading-relaxed">Your professional technology integration partner for stable networking, advanced camera security grids, and enterprise workstation deployment across Jharkhand.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Quick Navigation</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#home" class="hover:text-white transition-colors">Home Portal</a></li>
+          <li><a href="#about" class="hover:text-white transition-colors">Corporate Identity</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Service Metrics</a></li>
+          <li><a href="#projects" class="hover:text-white transition-colors">System Portfolio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Technical Assets</h4>
+        <ul class="space-y-2.5">
+          <li>CCTV Array Mapping</li>
+          <li>Biometric Panel Integration</li>
+          <li>Workstation Diagnostics</li>
+          <li>Intercom Switch Routing</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-sm mb-4">Ranchi Central Office</h4>
+        <p class="mb-2 text-slate-300">📍 Argora Circle Area, Ranchi, JH, India</p>
+        <p class="mb-2">✉️ info@securesystemsolution.in</p>
+        <p>⏰ Service Desk: On-Site Technical Assistance</p>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto pt-8 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center text-[11px] gap-4">
+      <p>Copyright &copy; 2026 Secure System Solution. All rights reserved.</p>
+      <p class="text-sky-400 font-bold tracking-wider uppercase">Powered By GAHONSH FREELANCING</p>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Active Action Handles -->
+  <a href="https://wa.me/91XXXXXXXXXX?text=I%20am%20interested%20in%20Secure%20System%20Solution%20Architecture" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-xl z-50 transition-transform hover:scale-110" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <button id="backToTop" class="fixed bottom-6 left-6 bg-slate-800 text-slate-400 border border-slate-700 w-10 h-10 rounded-full flex items-center justify-center text-sm shadow-xl z-50 hover:text-white opacity-0 transition-opacity duration-300 cursor-pointer">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- External Script Frameworks Dependencies -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
