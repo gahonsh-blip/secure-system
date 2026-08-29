@@ -1,0 +1,15 @@
+{
+  "name": "secure-system-solution",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "IT Infrastructure & CCTV Security in Ranchi",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Static build ready'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
