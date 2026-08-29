@@ -45,5 +45,5 @@ Returns the operational status of the Node.js Express server.
 
 ### 2.3 WhatsApp Floating Quick Action
 - **Trigger**: Click on fixed WhatsApp button in `index.html`.
-- **URL**: `https://wa.me/91XXXXXXXXXX?text=I%20am%20interested%20in%20Secure%20System%20Solution%20Architecture`
-- *Note*: Phone number in `index.html` WhatsApp link is currently a placeholder (`91XXXXXXXXXX`).
+- **URL**: `https://wa.me/918797477082?text=I%20am%20interested%20in%20Secure%20System%20Solution%20Architecture`
+- **Destination Number**: `+91-8797477082`

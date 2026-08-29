@@ -14,19 +14,30 @@
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
     <!-- NAVIGATION BAR -->
-    <nav class="bg-white shadow-sm border-b border-slate-100">
+    <nav class="bg-white shadow-sm border-b border-slate-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
                     <i class="fa-solid fa-shield-halved text-2xl text-[#1F4E79]"></i>
                     <span class="text-xl font-bold text-[#1F4E79] tracking-tight">Secure System Solution</span>
-                </div>
+                </a>
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="index.html" class="text-slate-600 hover:text-[#1F4E79] transition">होम</a>
                     <a href="about.html" class="text-slate-600 hover:text-[#1F4E79] transition">हमारे बारे में</a>
                     <a href="services.html" class="text-slate-600 hover:text-[#1F4E79] transition">सेवाएं</a>
                     <a href="contact.html" class="text-[#1F4E79] font-bold border-b-2 border-[#1F4E79] pb-1">संपर्क करें</a>
                 </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-toggle-btn" class="md:hidden text-slate-700 hover:text-[#1F4E79] text-2xl focus:outline-none p-2" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-nav-panel" class="hidden md:hidden border-t border-slate-100 py-3 space-y-2">
+                <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-[#1F4E79]">होम</a>
+                <a href="about.html" class="block px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-[#1F4E79]">हमारे बारे में</a>
+                <a href="services.html" class="block px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-[#1F4E79]">सेवाएं</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-lg bg-blue-50 text-[#1F4E79] font-bold">संपर्क करें</a>
             </div>
         </div>
     </nav>
@@ -70,22 +81,26 @@
                 <!-- Form Layout with Dropdown -->
                 <div class="lg:col-span-2 bg-slate-50 p-8 rounded-2xl border border-slate-100">
                     <h3 class="text-xl font-bold text-slate-900 mb-6">पूछताछ फ़ॉर्म (Get in Touch)</h3>
-                    <form onsubmit="alert('Thank you for connecting! Secure System Solution will reply within 24 hours.'); return false;" class="space-y-5">
+                    <div id="contact-success-msg" class="hidden mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-sm flex items-center">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-xl mr-3"></i>
+                        <span>धन्यवाद! आपकी पूछताछ सफलतापूर्वक दर्ज हो गई है। हमारी टीम 24 घंटे के भीतर आपसे संपर्क करेगी।</span>
+                    </div>
+                    <form id="hindiContactForm" class="space-y-5">
                         <div class="grid sm:grid-cols-2 gap-5">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 uppercase mb-2">पूरा नाम (Full Name)</label>
-                                <input type="text" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none">
+                                <input type="text" id="h-name" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 uppercase mb-2">फ़ोन नंबर (Phone Number)</label>
-                                <input type="tel" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none">
+                                <input type="tel" id="h-phone" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600">
                             </div>
                         </div>
                         
                         <!-- SERVICE DROPDOWN -->
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase mb-2">आवश्यक सेवा चुनें (Select Required Service)</label>
-                            <select required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none text-slate-700">
+                            <select id="h-service" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600 text-slate-700">
                                 <option value="" disabled selected>कृपया एक सेवा चुनें (Choose a service)</option>
                                 <option value="cctv">CCTV Camera Installation & Repair</option>
                                 <option value="biometric">Biometric Attendance System</option>
@@ -98,9 +113,9 @@
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 uppercase mb-2">समस्या का विवरण (Message Description)</label>
-                            <textarea rows="4" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none"></textarea>
+                            <textarea id="h-msg" rows="4" required class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-600"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-[#1F4E79] hover:bg-slate-800 text-white font-semibold py-3 rounded-xl shadow-lg transition">Submit Form</button>
+                        <button type="submit" id="h-submit-btn" class="w-full bg-[#1F4E79] hover:bg-slate-800 text-white font-semibold py-3 rounded-xl shadow-lg transition cursor-pointer">Submit Form</button>
                     </form>
                 </div>
             </div>
@@ -111,5 +126,34 @@
     <footer class="bg-slate-900 text-slate-400 py-6 text-center text-sm">
         <p>&copy; 2026 Secure System Solution. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Mobile Toggle Handler
+        const toggleBtn = document.getElementById('mobile-toggle-btn');
+        const navPanel = document.getElementById('mobile-nav-panel');
+        if (toggleBtn && navPanel) {
+            toggleBtn.addEventListener('click', () => {
+                navPanel.classList.toggle('hidden');
+            });
+        }
+
+        // Contact Form Handler with inline confirmation
+        const hindiForm = document.getElementById('hindiContactForm');
+        const successMsg = document.getElementById('contact-success-msg');
+        if (hindiForm) {
+            hindiForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (successMsg) {
+                    successMsg.classList.remove('hidden');
+                }
+                const submitBtn = document.getElementById('h-submit-btn');
+                if (submitBtn) {
+                    submitBtn.innerText = 'Submitted Successfully!';
+                    submitBtn.classList.replace('bg-[#1F4E79]', 'bg-emerald-600');
+                }
+                hindiForm.reset();
+            });
+        }
+    </script>
 </body>
 </html>
